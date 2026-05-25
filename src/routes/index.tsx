@@ -7,6 +7,10 @@ import { Security } from "@/components/phantomix/Security";
 import { Download } from "@/components/phantomix/Download";
 import { Community } from "@/components/phantomix/Community";
 import { Footer } from "@/components/phantomix/Footer";
+import { ScrollProgress } from "@/components/phantomix/ScrollProgress";
+import { AnimatedBackground } from "@/components/phantomix/AnimatedBackground";
+import { ScrollToTop } from "@/components/phantomix/ScrollToTop";
+import { motion } from "framer-motion";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -30,14 +34,19 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <main className="relative">
+      <AnimatedBackground />
+      <ScrollProgress />
       <Navbar />
       <Hero />
-      <Features />
+      <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.8 }}>
+        <Features />
+      </motion.div>
       <AISection />
       <Security />
       <Download />
       <Community />
       <Footer />
+      <ScrollToTop />
     </main>
   );
 }
