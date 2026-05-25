@@ -6,6 +6,8 @@ export function BrowserMockup() {
     <motion.div
       animate={{ y: [0, -12, 0] }}
       transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      whileHover={{ rotateX: 4, rotateY: -6, scale: 1.02 }}
+      style={{ transformPerspective: 1200, transformStyle: "preserve-3d" }}
       className="relative"
     >
       {/* glow */}

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Download, ExternalLink, Sparkles } from "lucide-react";
 import { BrowserMockup } from "./BrowserMockup";
+import { Counter } from "./Counter";
 
 export function Hero() {
   return (
@@ -68,14 +69,21 @@ export function Hero() {
 
             <div className="mt-10 flex flex-wrap gap-6 justify-center lg:justify-start text-sm text-muted-foreground">
               {[
-                { v: "3×", l: "Faster than Chrome" },
-                { v: "0", l: "Trackers allowed" },
-                { v: "10M+", l: "Active users" },
-              ].map((s) => (
-                <div key={s.l}>
-                  <div className="text-2xl font-display font-bold text-foreground">{s.v}</div>
+                { n: 3, suffix: "×", l: "Faster than Chrome" },
+                { n: 0, suffix: "", l: "Trackers allowed" },
+                { n: 10, suffix: "M+", l: "Active users" },
+              ].map((s, i) => (
+                <motion.div
+                  key={s.l}
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.6 + i * 0.1 }}
+                >
+                  <div className="text-2xl font-display font-bold text-foreground">
+                    <Counter to={s.n} suffix={s.suffix} />
+                  </div>
                   <div>{s.l}</div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>

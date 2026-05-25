@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Ghost, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -81,25 +81,37 @@ export function Navbar() {
           </button>
         </nav>
 
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="md:hidden glass-strong mt-2 rounded-2xl p-4 flex flex-col gap-3"
-          >
-            {links.map((l) => (
-              <a key={l.label} href={l.href} onClick={() => setOpen(false)} className="text-sm py-2">
-                {l.label}
-              </a>
-            ))}
-            <a
-              href="#download"
-              className="mt-2 text-center px-5 py-2.5 rounded-xl text-sm font-medium bg-gradient-to-r from-primary to-accent text-primary-foreground"
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{ opacity: 0, y: -10, height: 0 }}
+              animate={{ opacity: 1, y: 0, height: "auto" }}
+              exit={{ opacity: 0, y: -10, height: 0 }}
+              transition={{ duration: 0.25 }}
+              className="md:hidden glass-strong mt-2 rounded-2xl p-4 flex flex-col gap-3 overflow-hidden"
             >
-              Get Started
-            </a>
-          </motion.div>
-        )}
+              {links.map((l, i) => (
+                <motion.a
+                  key={l.label}
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.05 }}
+                  className="text-sm py-2"
+                >
+                  {l.label}
+                </motion.a>
+              ))}
+              <a
+                href="#download"
+                className="mt-2 text-center px-5 py-2.5 rounded-xl text-sm font-medium bg-gradient-to-r from-primary to-accent text-primary-foreground"
+              >
+                Get Started
+              </a>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.header>
   );
