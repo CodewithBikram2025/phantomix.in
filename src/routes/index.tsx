@@ -11,6 +11,7 @@ import { ScrollProgress } from "@/components/phantomix/ScrollProgress";
 import { AnimatedBackground } from "@/components/phantomix/AnimatedBackground";
 import { ScrollToTop } from "@/components/phantomix/ScrollToTop";
 import { motion } from "framer-motion";
+import { Toaster } from "@/components/ui/sonner";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -47,6 +48,7 @@ function Index() {
       <Community />
       <Footer />
       <ScrollToTop />
+      <Toaster position="bottom-right" theme="dark" />
     </main>
   );
 }
