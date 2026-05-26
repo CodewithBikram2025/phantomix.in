@@ -7,6 +7,7 @@ import { StatsCards } from "@/components/dashboard/StatsCards";
 import { DashboardCharts } from "@/components/dashboard/DashboardCharts";
 import { RecentTable } from "@/components/dashboard/RecentTable";
 import { AnimatedBackground } from "@/components/phantomix/AnimatedBackground";
+import { useAuthSession } from "@/hooks/use-auth-session";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({ meta: [{ title: "Dashboard — Phantomix" }] }),
@@ -14,8 +15,8 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
 });
 
 function DashboardPage() {
-  const { auth } = Route.useRouteContext();
-  const email = auth?.session?.user?.email;
+  const { session } = useAuthSession();
+  const email = session?.user?.email;
 
   return (
     <SidebarProvider>
@@ -25,9 +26,7 @@ function DashboardPage() {
         <SidebarInset className="relative z-10 bg-transparent">
           <DashboardNavbar email={email} />
           <main className="p-4 md:p-6 space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
-            >
+            <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
               <h1 className="text-3xl md:text-4xl font-display font-bold">
                 Welcome back<span className="text-gradient">.</span>
               </h1>

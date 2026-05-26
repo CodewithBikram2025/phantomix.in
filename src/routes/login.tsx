@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useNavigate, redirect } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate, Navigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Ghost, Mail, Lock, Loader2, ArrowRight } from "lucide-react";
@@ -8,21 +8,22 @@ import { lovable } from "@/integrations/lovable/index";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { AnimatedBackground } from "@/components/phantomix/AnimatedBackground";
+import { useAuthSession } from "@/hooks/use-auth-session";
 
 export const Route = createFileRoute("/login")({
-  beforeLoad: ({ context }) => {
-    if (context.auth?.session) throw redirect({ to: "/dashboard" });
-  },
   component: LoginPage,
 });
 
 function LoginPage() {
   const navigate = useNavigate();
+  const { session } = useAuthSession();
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
+
+  if (session) return <Navigate to="/dashboard" />;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
