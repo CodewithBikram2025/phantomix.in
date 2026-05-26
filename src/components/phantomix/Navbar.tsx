@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Ghost, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
+import { Link } from "@tanstack/react-router";
 
 const links = [
   { label: "Features", href: "#features" },
@@ -58,18 +59,18 @@ export function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center gap-3">
-            <a
-              href="https://your-webapp-link.com"
+            <Link
+              to="/login"
               className="text-sm text-muted-foreground hover:text-foreground transition"
             >
               Sign in
-            </a>
-            <a
-              href="#download"
+            </Link>
+            <Link
+              to="/login"
               className="relative inline-flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-medium bg-gradient-to-r from-primary via-neon-purple to-accent text-primary-foreground glow-purple hover:scale-105 transition-transform"
             >
               Get Started
-            </a>
+            </Link>
           </div>
 
           <button
