@@ -6,13 +6,13 @@ import {
 } from "@/components/ui/sidebar";
 
 const items = [
-  { title: "Overview", url: "/dashboard", icon: LayoutDashboard },
-  { title: "Analytics", url: "/dashboard", icon: BarChart3 },
-  { title: "Sessions", url: "/dashboard", icon: Globe },
-  { title: "Privacy", url: "/dashboard", icon: Shield },
-  { title: "AI Copilot", url: "/dashboard", icon: Sparkles },
-  { title: "Members", url: "/dashboard", icon: Users },
-  { title: "Settings", url: "/settings", icon: Settings },
+  { title: "Overview", url: "/dashboard" as const, icon: LayoutDashboard },
+  { title: "Analytics", url: "/analytics" as const, icon: BarChart3 },
+  { title: "Sessions", url: "/sessions" as const, icon: Globe },
+  { title: "Privacy", url: "/privacy" as const, icon: Shield },
+  { title: "AI Copilot", url: "/ai-copilot" as const, icon: Sparkles },
+  { title: "Members", url: "/members" as const, icon: Users },
+  { title: "Settings", url: "/settings" as const, icon: Settings },
 ];
 
 export function AppSidebar() {
