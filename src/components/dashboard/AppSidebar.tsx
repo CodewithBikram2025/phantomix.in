@@ -12,6 +12,7 @@ const items = [
   { title: "Privacy", url: "/dashboard", icon: Shield },
   { title: "AI Copilot", url: "/dashboard", icon: Sparkles },
   { title: "Members", url: "/dashboard", icon: Users },
+  { title: "Settings", url: "/settings", icon: Settings },
 ];
 
 export function AppSidebar() {
