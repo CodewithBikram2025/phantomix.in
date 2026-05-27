@@ -16,24 +16,39 @@ export type Database = {
     Tables: {
       profiles: {
         Row: {
+          ai_suggestions: boolean
           avatar_url: string | null
+          block_ads: boolean
+          block_trackers: boolean
           created_at: string
           display_name: string | null
+          https_only: boolean
           id: string
+          telemetry: boolean
           updated_at: string
         }
         Insert: {
+          ai_suggestions?: boolean
           avatar_url?: string | null
+          block_ads?: boolean
+          block_trackers?: boolean
           created_at?: string
           display_name?: string | null
+          https_only?: boolean
           id: string
+          telemetry?: boolean
           updated_at?: string
         }
         Update: {
+          ai_suggestions?: boolean
           avatar_url?: string | null
+          block_ads?: boolean
+          block_trackers?: boolean
           created_at?: string
           display_name?: string | null
+          https_only?: boolean
           id?: string
+          telemetry?: boolean
           updated_at?: string
         }
         Relationships: []
